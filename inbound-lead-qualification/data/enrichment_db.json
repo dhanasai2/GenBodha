@@ -1,0 +1,136 @@
+{
+  "cloudscale.io": {
+    "company_name": "CloudScale Systems",
+    "industry": "Cloud Infrastructure & SaaS",
+    "total_employees": 1200,
+    "engineering_headcount": 450,
+    "tech_stack": ["Kubernetes", "AWS EKS", "Terraform", "Go", "Docker"],
+    "geography": "US",
+    "headquarters": "Seattle, WA",
+    "company_type": "Product Company",
+    "verified_snippets": [
+      {
+        "snippet_id": "SNIP-001",
+        "fact": "CloudScale Systems has 450 engineers across US offices.",
+        "source": "LinkedIn Talent Insights 2026"
+      },
+      {
+        "snippet_id": "SNIP-002",
+        "fact": "CloudScale operates 400+ Kubernetes nodes on AWS EKS.",
+        "source": "KubeCon 2025 Case Study Presentation"
+      }
+    ]
+  },
+  "fintechglobal.com": {
+    "company_name": "FinTech Global Services",
+    "industry": "Financial Technology",
+    "total_employees": 950,
+    "engineering_headcount": 350,
+    "tech_stack": ["Kubernetes", "Azure AKS", "Java", "Kafka"],
+    "geography": "US & EU",
+    "headquarters": "New York, NY",
+    "company_type": "Product Company",
+    "verified_snippets": [
+      {
+        "snippet_id": "SNIP-003",
+        "fact": "FinTech Global employs 350+ software engineers across New York and Frankfurt.",
+        "source": "Engineering Blog 2026"
+      },
+      {
+        "snippet_id": "SNIP-004",
+        "fact": "FinTech Global processes 10M transactions daily on Azure AKS Kubernetes clusters.",
+        "source": "Cloud Architecture Summit Report"
+      }
+    ]
+  },
+  "enterprise-pay.com": {
+    "company_name": "Enterprise Payment Corp",
+    "industry": "Payments & Banking Tech",
+    "total_employees": 700,
+    "engineering_headcount": 250,
+    "tech_stack": ["Kubernetes", "OpenShift", "Python", "PostgreSQL"],
+    "geography": "US",
+    "headquarters": "Chicago, IL",
+    "company_type": "Product Company",
+    "verified_snippets": [
+      {
+        "snippet_id": "SNIP-005",
+        "fact": "Enterprise Payment Corp announced migration of 250 developers to RedHat OpenShift K8s.",
+        "source": "Press Release Jan 2026"
+      }
+    ]
+  },
+  "hyperstack.net": {
+    "company_name": "HyperStack Technologies",
+    "industry": "Enterprise SaaS",
+    "total_employees": 1500,
+    "engineering_headcount": 600,
+    "tech_stack": ["Kubernetes", "GKE", "Rust", "React"],
+    "geography": "US",
+    "headquarters": "San Francisco, CA",
+    "company_type": "Product Company",
+    "verified_snippets": [
+      {
+        "snippet_id": "SNIP-006",
+        "fact": "HyperStack engineering team in SF reached 600 full-time engineers.",
+        "source": "TechCrunch Article Feb 2026"
+      },
+      {
+        "snippet_id": "SNIP-007",
+        "fact": "HyperStack operates multi-tenant Google Kubernetes Engine (GKE) clusters.",
+        "source": "GCP Customer Stories"
+      }
+    ]
+  },
+  "healthnet.org": {
+    "company_name": "HealthNet Systems",
+    "industry": "Healthcare IT",
+    "total_employees": 2000,
+    "engineering_headcount": 520,
+    "tech_stack": ["Kubernetes", "AWS", "C#", "SQL Server"],
+    "geography": "US",
+    "headquarters": "Boston, MA",
+    "company_type": "Product Company",
+    "verified_snippets": [
+      {
+        "snippet_id": "SNIP-008",
+        "fact": "HealthNet Systems maintains a 520-person healthcare technology workforce.",
+        "source": "Annual Report 2025"
+      }
+    ]
+  },
+  "tokyosys.jp": {
+    "company_name": "Tokyo Systems Japan",
+    "industry": "IT Solutions",
+    "total_employees": 120,
+    "engineering_headcount": 50,
+    "tech_stack": ["Docker", "Linux", "Node.js"],
+    "geography": "APAC",
+    "headquarters": "Tokyo, Japan",
+    "company_type": "Services Company",
+    "verified_snippets": [
+      {
+        "snippet_id": "SNIP-009",
+        "fact": "Tokyo Systems Japan has 50 IT staff based in Tokyo.",
+        "source": "Company Website"
+      }
+    ]
+  },
+  "agencydesign.co": {
+    "company_name": "Agency Design Studio",
+    "industry": "Digital Agency",
+    "total_employees": 30,
+    "engineering_headcount": 12,
+    "tech_stack": ["Webflow", "React", "Figma"],
+    "geography": "US",
+    "headquarters": "Austin, TX",
+    "company_type": "Agency",
+    "verified_snippets": [
+      {
+        "snippet_id": "SNIP-010",
+        "fact": "Agency Design Studio is a 30-person web design agency.",
+        "source": "Clutch.co Directory"
+      }
+    ]
+  }
+}

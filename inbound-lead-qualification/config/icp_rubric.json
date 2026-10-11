@@ -1,0 +1,38 @@
+{
+  "target_icp": {
+    "min_engineering_count": 200,
+    "required_tech_stack": ["Kubernetes"],
+    "allowed_geographies": ["US", "EU", "North America", "Europe"],
+    "disqualified_company_types": ["Agency", "Recruiting", "Consulting", "Competitor"],
+    "disqualified_email_domains": ["gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "protonmail.com", "icloud.com"],
+    "competitor_domains": ["devtools-rival.com", "stackcompete.io", "k8s-competitor.dev"]
+  },
+  "scoring_weights": {
+    "engineering_team_size": {
+      "200+": 40,
+      "100-199": 20,
+      "50-99": 10,
+      "<50": 0
+    },
+    "kubernetes_usage": {
+      "verified_production": 30,
+      "evaluating": 15,
+      "none": 0
+    },
+    "geography": {
+      "US": 15,
+      "EU": 15,
+      "Other": 0
+    },
+    "persona_match": {
+      "VP Engineering / Head of Infrastructure / CTO / Director of Platform": 15,
+      "Senior DevOps / Staff Engineer": 10,
+      "Junior Developer / Student / Recruiter": 0
+    }
+  },
+  "qualification_thresholds": {
+    "qualified": 70,
+    "nurture": 40,
+    "disqualified": 0
+  }
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inbound Lead Qualification & Claim Traceability Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="navbar">
+      <div class="logo">
+        <span class="badge-icon">🥇</span>
+        <div class="logo-text">
+          <h1>LeadTrace AI</h1>
+          <p>Inbound Lead Qualification & Grounded Outreach Engine</p>
+        </div>
+      </div>
+      <div class="sla-badge">
+        <span class="pulse-dot"></span>
+        <span>SLA Budget: <strong>30-Min SLA Active</strong></span>
+        <span class="latency-stat" id="hdr-avg-latency">Avg: 1.2ms</span>
+      </div>
+    </header>
+
+    <!-- Stat Cards -->
+    <section class="stats-grid">
+      <div class="card stat-card">
+        <div class="stat-header">Total Leads</div>
+        <div class="stat-value" id="stat-total">10</div>
+        <div class="stat-footer">Weekly Form Submissions</div>
+      </div>
+      <div class="card stat-card qualified">
+        <div class="stat-header">High Fit (Qualified)</div>
+        <div class="stat-value" id="stat-qualified">4</div>
+        <div class="stat-footer">Direct to SDR Queue</div>
+      </div>
+      <div class="card stat-card nurture">
+        <div class="stat-header">Nurture Drip</div>
+        <div class="stat-value" id="stat-nurture">2</div>
+        <div class="stat-footer">Marketing Campaign</div>
+      </div>
+      <div class="card stat-card disqualified">
+        <div class="stat-header">Disqualified</div>
+        <div class="stat-value" id="stat-disqualified">4</div>
+        <div class="stat-footer">Fast-Fail Pre-filter</div>
+      </div>
+    </section>
+
+    <!-- Main Content Layout -->
+    <main class="main-content">
+      <!-- Left: Leads Queue -->
+      <section class="card queue-section">
+        <div class="section-header">
+          <h2>Inbound Lead Queue</h2>
+          <div class="filter-controls">
+            <button class="filter-btn active" data-filter="ALL">All</button>
+            <button class="filter-btn" data-filter="QUALIFIED">Qualified</button>
+            <button class="filter-btn" data-filter="DISQUALIFIED">Disqualified</button>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table class="leads-table">
+            <thead>
+              <tr>
+                <th>Lead ID</th>
+                <th>Prospect</th>
+                <th>Company / Domain</th>
+                <th>ICP Score</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="leads-tbody">
+              <!-- Dynamically Populated -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Right: Detailed Inspector & Claim Tracer -->
+      <section class="card inspector-section" id="inspector-card">
+        <div class="inspector-header">
+          <h3>Lead Qualification & Claim Trace Inspector</h3>
+          <span class="lead-id-tag" id="inspect-lead-id">Select a lead</span>
+        </div>
+
+        <div class="inspector-placeholder" id="inspector-placeholder">
+          <p>👈 Select any lead from the queue to inspect form vs enrichment provenance, ICP scoring, and grounded outbound email claims.</p>
+        </div>
+
+        <div class="inspector-body hidden" id="inspector-content">
+          <!-- Provenance Split View -->
+          <div class="provenance-grid">
+            <div class="prov-box form-box">
+              <h4>📝 Prospect Form Input (User Supplied)</h4>
+              <p><strong>Name:</strong> <span id="p-name"></span></p>
+              <p><strong>Email:</strong> <span id="p-email"></span></p>
+              <p><strong>Title:</strong> <span id="p-title"></span></p>
+              <p><strong>Domain:</strong> <span id="p-domain"></span></p>
+              <p><strong>Message:</strong> <i id="p-msg"></i></p>
+            </div>
+            <div class="prov-box enrich-box">
+              <h4>🔍 Enriched Facts (Retrieved Corpus)</h4>
+              <p><strong>Company:</strong> <span id="e-company"></span></p>
+              <p><strong>Eng Count:</strong> <span id="e-eng"></span></p>
+              <p><strong>Tech Stack:</strong> <span id="e-stack"></span></p>
+              <p><strong>Geography:</strong> <span id="e-geo"></span></p>
+              <p><strong>Retrieval Status:</strong> <span id="e-status" class="status-pill"></span></p>
+            </div>
+          </div>
+
+          <!-- Score Breakdown -->
+          <div class="score-breakdown-card">
+            <div class="score-main">
+              <div class="score-circle" id="score-circle-val">85</div>
+              <div>
+                <h4 id="score-tier-lbl">QUALIFIED</h4>
+                <p id="score-route-lbl">Route: SDR Priority Queue</p>
+              </div>
+            </div>
+            <div class="criteria-list" id="criteria-list">
+              <!-- Matched rules -->
+            </div>
+          </div>
+
+          <!-- Grounded Email & Claim Trace -->
+          <div class="email-trace-box">
+            <div class="trace-header">
+              <h4>📧 Drafted First-Touch Email & Claim Trace</h4>
+              <span class="zero-hallucination-badge">🛡️ 0% Hallucination Guaranteed</span>
+            </div>
+            <div class="email-preview">
+              <div class="email-subj"><strong>Subject:</strong> <span id="email-subject-val"></span></div>
+              <div class="email-body" id="email-body-val"></div>
+            </div>
+
+            <!-- Snippet Audit Table -->
+            <div class="snippets-audit">
+              <h5>Claim Provenance Audit Trace</h5>
+              <div id="trace-claims-list"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "total_leads": 10,
+  "disqualified": 4,
+  "qualified": 5,
+  "nurture": 0,
+  "unqualified": 1,
+  "avg_latency_ms": 0.024789990857243538,
+  "median_latency_ms": 0.02069998299703002,
+  "max_latency_ms": 0.0692000612616539,
+  "sla_budget_utilized_pct": 1.3772217142913077e-06,
+  "hallucination_rate_pct": 0.0,
+  "claims_verified_count": 8
+}

@@ -1,0 +1,42 @@
+{
+  "total_invoices": 900,
+  "total_time_seconds": 0.1517,
+  "avg_latency_ms_per_invoice": 0.1685,
+  "accuracy_pct": 76.89,
+  "duplicate_precision": 1.0,
+  "duplicate_recall": 1.0,
+  "duplicate_f1": 1.0,
+  "abstentions_count": 112,
+  "cost_report": {
+    "total_financial_loss_dollars": 10400.0,
+    "cost_breakdown": {
+      "missed_duplicates_count": 0,
+      "missed_duplicates_loss_dollars": 0.0,
+      "unnecessary_escalations_count": 0,
+      "unnecessary_escalation_loss_dollars": 0.0,
+      "wrong_resolutions_count": 208,
+      "wrong_resolution_loss_dollars": 10400.0,
+      "correct_auto_actions_count": 692
+    },
+    "cost_matrix_parameters": {
+      "missed_duplicate_cost": 94000.0,
+      "unnecessary_escalation_cost": 15.0,
+      "wrong_resolution_cost": 50.0
+    }
+  },
+  "extraction_accuracy": {
+    "total_invoices_parsed": 900,
+    "clean_extractions": 788,
+    "noisy_extractions": 112,
+    "overall_extraction_accuracy_pct": 87.56
+  },
+  "category_distribution": {
+    "PRICE_DRIFT": 78,
+    "CLEARED_AUTO_MATCH": 164,
+    "TAX_DISCREPANCY": 83,
+    "TRUE_DUPLICATE_RISK": 113,
+    "QUANTITY_MISMATCH": 239,
+    "UNSURE_NEEDS_HUMAN_CHECK": 112,
+    "VALID_SUBSCRIPTION_RECURRING": 111
+  }
+}

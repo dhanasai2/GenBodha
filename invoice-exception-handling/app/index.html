@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice Exception Handling — 3-Way Match Dashboard</title>
+  <meta name="description" content="AI-powered invoice exception classifier with financial cost matrix optimization and duplicate payment risk detection.">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+
+    <!-- Header -->
+    <header class="navbar">
+      <div class="logo">
+        <span class="badge-icon">🥈</span>
+        <div class="logo-text">
+          <h1>InvoiceGuard AI</h1>
+          <p>3-Way Match Exception Handler · Cost-Matrix Optimized · Zero-Arithmetic-in-LLM</p>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="cost-risk-meter">
+          <span class="risk-label">Duplicate Risk Exposure</span>
+          <span class="risk-amount" id="hdr-risk-amount">$0</span>
+        </div>
+        <div class="sla-badge">
+          <span class="pulse-dot green"></span>
+          <span>Processing: <strong id="hdr-proc-count">0</strong> / 30 Sample Exceptions</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Top KPI Cards -->
+    <section class="stats-grid">
+      <div class="card stat-card" id="sc-total">
+        <div class="stat-icon">📄</div>
+        <div class="stat-content">
+          <div class="stat-value" id="stat-total">0</div>
+          <div class="stat-label">Total Exceptions</div>
+          <div class="stat-sub">Monthly Invoice Batch</div>
+        </div>
+      </div>
+      <div class="card stat-card cleared">
+        <div class="stat-icon">✅</div>
+        <div class="stat-content">
+          <div class="stat-value" id="stat-cleared">0</div>
+          <div class="stat-label">Auto-Cleared</div>
+          <div class="stat-sub">Perfect 3-Way Match</div>
+        </div>
+      </div>
+      <div class="card stat-card danger">
+        <div class="stat-icon">🚨</div>
+        <div class="stat-content">
+          <div class="stat-value" id="stat-dup">0</div>
+          <div class="stat-label">Duplicate Risk</div>
+          <div class="stat-sub" id="stat-dup-loss">$0 at risk</div>
+        </div>
+      </div>
+      <div class="card stat-card warning">
+        <div class="stat-icon">👤</div>
+        <div class="stat-content">
+          <div class="stat-value" id="stat-human">0</div>
+          <div class="stat-label">Human Review</div>
+          <div class="stat-sub">UNSURE Abstentions</div>
+        </div>
+      </div>
+      <div class="card stat-card info">
+        <div class="stat-icon">💰</div>
+        <div class="stat-content">
+          <div class="stat-value" id="stat-loss">$0</div>
+          <div class="stat-label">Total Financial Loss</div>
+          <div class="stat-sub">Cost-Matrix Optimized</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cost Matrix Simulator Panel -->
+    <section class="card cost-matrix-panel">
+      <div class="panel-header">
+        <h2>💡 Financial Cost Matrix Simulator</h2>
+        <span class="panel-badge">LIVE OPTIMIZATION</span>
+      </div>
+      <div class="cost-matrix-grid">
+        <div class="cost-slider-group">
+          <label>Missed Duplicate Cost: <strong id="dup-cost-val">$94,000</strong></label>
+          <input type="range" id="dup-cost-slider" min="10000" max="200000" value="94000" step="1000" class="cost-slider">
+        </div>
+        <div class="cost-slider-group">
+          <label>Unnecessary Escalation Cost: <strong id="esc-cost-val">$15</strong></label>
+          <input type="range" id="esc-cost-slider" min="5" max="500" value="15" step="5" class="cost-slider">
+        </div>
+        <div class="cost-slider-group">
+          <label>Wrong Resolution Cost: <strong id="wrng-cost-val">$50</strong></label>
+          <input type="range" id="wrng-cost-slider" min="10" max="1000" value="50" step="10" class="cost-slider">
+        </div>
+        <div class="cost-result-box">
+          <div class="cost-result-label">Recalculated Total Financial Exposure</div>
+          <div class="cost-result-val" id="cost-result-dynamic">$0</div>
+          <div class="cost-result-hint">vs. Baseline F1-Optimized: <span id="baseline-f1-loss">$0</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Left: Exception Queue Table -->
+      <section class="card queue-section">
+        <div class="section-header">
+          <h2>Invoice Exception Queue</h2>
+          <div class="filter-controls">
+            <button class="filter-btn active" data-filter="ALL">All</button>
+            <button class="filter-btn" data-filter="TRUE_DUPLICATE_RISK">Duplicates</button>
+            <button class="filter-btn" data-filter="UNSURE_NEEDS_HUMAN_CHECK">Human Review</button>
+            <button class="filter-btn" data-filter="CLEARED_AUTO_MATCH">Cleared</button>
+          </div>
+        </div>
+        <div class="table-wrapper">
+          <table class="invoice-table" id="invoice-table">
+            <thead>
+              <tr>
+                <th>Invoice #</th>
+                <th>Supplier</th>
+                <th>PO ID</th>
+                <th>Amount</th>
+                <th>Exception Category</th>
+                <th>ERP Action</th>
+                <th>Inspect</th>
+              </tr>
+            </thead>
+            <tbody id="invoice-tbody">
+            </tbody>
+          </table>
+        </div>
+        <div class="pagination-bar">
+          <button class="page-btn" id="page-prev">← Prev</button>
+          <span id="page-info">Page 1 / 1</span>
+          <button class="page-btn" id="page-next">Next →</button>
+        </div>
+      </section>
+
+      <!-- Right: 3-Way Match Inspector -->
+      <section class="card inspector-section">
+        <div class="inspector-header">
+          <h3>3-Way Match Inspector</h3>
+          <span class="lead-id-tag" id="inspect-inv-id">Select an invoice</span>
+        </div>
+
+        <div class="inspector-placeholder" id="inspector-placeholder">
+          <div class="placeholder-icon">🔍</div>
+          <p>Select any invoice exception to inspect the full 3-way match breakdown, computed deltas, duplicate detection result, and proposed ERP resolution.</p>
+        </div>
+
+        <div class="inspector-body hidden" id="inspector-content">
+
+          <!-- Three Document Comparison -->
+          <div class="three-way-grid">
+            <div class="doc-card invoice-doc">
+              <div class="doc-title">📄 INVOICE</div>
+              <div class="doc-field"><span>Invoice #</span><span id="inv-num"></span></div>
+              <div class="doc-field"><span>Supplier</span><span id="inv-sup"></span></div>
+              <div class="doc-field"><span>Qty Billed</span><span id="inv-qty" class="mono-val"></span></div>
+              <div class="doc-field"><span>Unit Price</span><span id="inv-price" class="mono-val"></span></div>
+              <div class="doc-field"><span>Tax</span><span id="inv-tax" class="mono-val"></span></div>
+              <div class="doc-field total-field"><span>Total</span><span id="inv-total" class="mono-val"></span></div>
+              <div class="doc-field"><span>OCR Confidence</span><span id="inv-conf" class="conf-badge"></span></div>
+            </div>
+            <div class="doc-card po-doc">
+              <div class="doc-title">📋 PURCHASE ORDER</div>
+              <div class="doc-field"><span>PO ID</span><span id="po-id-val"></span></div>
+              <div class="doc-field"><span>Qty Ordered</span><span id="po-qty" class="mono-val"></span></div>
+              <div class="doc-field"><span>Unit Price</span><span id="po-price" class="mono-val"></span></div>
+              <div class="doc-field"><span>Tax Rate</span><span id="po-tax-rate" class="mono-val"></span></div>
+              <div class="doc-field total-field"><span>Expected Total</span><span id="po-total" class="mono-val"></span></div>
+            </div>
+            <div class="doc-card gr-doc">
+              <div class="doc-title">🏭 GOODS RECEIPT</div>
+              <div class="doc-field"><span>GR Status</span><span id="gr-status" class="status-pill"></span></div>
+              <div class="doc-field"><span>Qty Received</span><span id="gr-qty" class="mono-val"></span></div>
+            </div>
+          </div>
+
+          <!-- Delta Analysis -->
+          <div class="delta-analysis-card" id="delta-card">
+            <h4>⚡ Computed Match Deltas (100% Code — No LLM Arithmetic)</h4>
+            <div class="delta-grid" id="delta-grid"></div>
+          </div>
+
+          <!-- Duplicate Detection Result -->
+          <div class="dup-detection-card" id="dup-card">
+            <h4>🔍 Duplicate Payment Risk Analysis</h4>
+            <div id="dup-result-content"></div>
+          </div>
+
+          <!-- Classification + Resolution -->
+          <div class="resolution-card">
+            <div class="classification-row">
+              <div>
+                <div class="class-label">Exception Category</div>
+                <div class="class-val" id="class-cat"></div>
+              </div>
+              <div>
+                <div class="class-label">Classification Confidence</div>
+                <div class="class-conf" id="class-conf"></div>
+              </div>
+              <div>
+                <div class="class-label">ERP Action</div>
+                <div class="class-action" id="class-action"></div>
+              </div>
+            </div>
+            <div class="email-draft-section">
+              <h4>📧 Proposed Supplier Email</h4>
+              <div class="email-body-box" id="res-email-body"></div>
+            </div>
+            <div id="checklist-section" class="checklist-section hidden">
+              <h4>✅ Human Analyst Checklist</h4>
+              <ul id="res-checklist"></ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
